@@ -25,7 +25,7 @@ public class LoginServlet extends HttpServlet {
                 {
                        Cookie userNameCookie = new Cookie("user", (String) request.getSession().getAttribute("name"));
                        //setting a cookie for month
-                       userNameCookie.setMaxAge(2629746);
+                       userNameCookie.setMaxAge(30*24*60*60);
                        userNameCookie.setPath("/");
                        response.addCookie(userNameCookie);
                    }
@@ -37,10 +37,10 @@ public class LoginServlet extends HttpServlet {
                        userNameCookie.setPath("/");
                        response.addCookie(userNameCookie);
                    }
-                  //creating a cookie named promo
-                   Cookie promo=new Cookie("promo","$100");
-                   promo.setMaxAge(30*24*60*60);
-                   response.addCookie(promo);
+//                  //creating a cookie named promo
+//                   Cookie promo=new Cookie("promo","$100");
+//                   promo.setMaxAge(30*24*60*60);
+//                   response.addCookie(promo);
                 response.sendRedirect("welcome.jsp");
                 return;
             }
@@ -53,12 +53,14 @@ public class LoginServlet extends HttpServlet {
 
         if(request.getCookies()!=null) {
                  for (Cookie cookie : request.getCookies()) {
+                      System.out.println(cookie.getValue());
                          if (cookie.getValue().equals(userCookie)) {
+
                           request.getSession().setAttribute("userName",userCookie);
                      }
                  }
              }
              request.getRequestDispatcher("index.jsp").forward(request,response);
-        response.sendRedirect("index.jsp");
+        //response.sendRedirect("index.jsp");
     }
 }

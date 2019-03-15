@@ -23,7 +23,7 @@
        <input type="checkbox" name="remember" checked >
        </c:when>
          <c:otherwise>
-         <input type="checkbox" name="remember" >
+         <input type="checkbox" name="remember"  >
          </c:otherwise>
        </c:choose>
        <input type="submit">
